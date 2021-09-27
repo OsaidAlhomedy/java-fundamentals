@@ -1,15 +1,15 @@
 # java-fundamentals
 
-### Author: Osaid Alhomedy (Aseed Alhameedi)
+## Author Osaid Alhomedy (Aseed Alhameedi)
 
 ---
 
-## Files
+### Files
 
 - Main.java
 - Main.class
 
-## Methods
+### Methods
 
 - `pluralize(String word, int number)`
 - `flipNHeads(int n)`
