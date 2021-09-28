@@ -3,9 +3,78 @@
  */
 package basiclibrary;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 
 public class Library {
+
+    public static void main(String[] args) {
+
+        System.out.println(binarySearch(new int[]{0, 1, 2, 3, 4}, 4));
+
+    }
+
+    // 0 , 1
+//    public static int binarySearch(int[] array, int key) {
+//
+//        int splitter = array.length / 2 ;
+//
+//        if (array[splitter] == key) {
+//            return splitter;
+//        }
+//        else if (array[splitter] > key) {
+//
+//            int[] newArr = new int[array.length / 2];
+//            for (int i = 0; i < newArr.length; i++) {
+//                newArr[i] = array[i];
+//            }
+//            return binarySearch(newArr, key);
+//
+//        }
+//
+//        else if (array[splitter] < key) {
+//            int[] newArr = new int[array.length / 2];
+//            for (int i = 0; i < newArr.length; i++) {
+//                newArr[i] = array[++splitter];
+//            }
+//            return binarySearch(newArr, key);
+//
+//        }
+//
+//        return 1;
+//
+//    }
+
+
+    public static int binarySearch(int[] array, int key) {
+
+        int min = array[0];
+        int max = array.length - 1;
+        int i = -1;
+        boolean validator = true;
+
+        while (validator) {
+            validator = false;
+
+            int mid = (min + max) / 2;
+
+            if (key == array[mid]) {
+                i = mid;
+            } else if (key < array[mid]) {
+                max = mid - 1;
+                validator = true;
+            } else {
+                min = mid + 1;
+                validator = true;
+            }
+        }
+
+        return i;
+
+    }
+
 
     public int[] roll(int n) {
         int[] dice = {1, 2, 3, 4, 5, 6};
