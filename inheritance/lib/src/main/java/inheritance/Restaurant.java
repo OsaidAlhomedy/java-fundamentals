@@ -3,19 +3,19 @@ package inheritance;
 import java.util.ArrayList;
 
 // The restaurant implements the review because each restaurant got its own reviews
-public class Restaurant implements IReview {
+public class Restaurant {
 
     /////////////////Fields
+
+    private int totalStars;
+
     private String name;
     private String price;
-    private int totalStars;
     private ArrayList<String> reviews = new ArrayList<>();
     private ArrayList<Integer> starsArray = new ArrayList<>();
 
     ////////////////Constructors
 
-    public Restaurant() {
-    }
 
     public Restaurant(String name) {
         this(name, "Not Specified");
@@ -25,6 +25,7 @@ public class Restaurant implements IReview {
         this.name = name;
         this.price = price;
     }
+
 
     ///////////////////////////////
 
@@ -36,14 +37,16 @@ public class Restaurant implements IReview {
         this.totalStars = totalSum / starsArray.size();
     }
 
-    @Override
-    public String addReview(String body, String author, int stars) {
-        if (stars < 0 || stars > 5) {
+
+    public String addReview(Review review) {
+        if (review.getStars() < 0 || review.getStars() > 5) {
             return "Please Choose a rating between 0 and 5 stars";
         } else {
-            String userReview = "Reviewer : " + author + "\n" + "Review : " + body + "\n" + "Rating :  " + stars + " stars" + "\n";
-            this.reviews.add(userReview);
-            this.starsArray.add(stars);
+            String userReview = "Reviewer : " + review.getAuthor() + "\n" + "Review : " + review.getBody() + "\n" + "Rating :  " + review.getStars() + " stars" + "\n";
+
+            setReviews(userReview);
+            setStarsArray(review.getStars());
+
             this.calculateTotalStars();
             return null;
         }
@@ -63,6 +66,15 @@ public class Restaurant implements IReview {
 
     public ArrayList<String> getReviews() {
         return reviews;
+    }
+
+
+    public void setReviews(String review) {
+        this.reviews.add(review);
+    }
+
+    public void setStarsArray(int stars) {
+        this.starsArray.add(stars);
     }
 
     //////////// toString OverRiding

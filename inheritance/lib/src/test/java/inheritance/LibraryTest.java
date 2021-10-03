@@ -17,7 +17,10 @@ class LibraryTest {
     @Test
     void reviewTesting() {
         Restaurant mcDonalds = new Restaurant("McDonald's", "$$");
-        mcDonalds.addReview("Food was good", "Osaid", 4);
+        Review review1 = new Review("Food was good","Osaid",4);
+        Review review2 = new Review("Blah","Blah",7);
+        Review review3 = new Review("Blah","Blah",-4);
+        mcDonalds.addReview(review1);
 
 
         assertNotNull(mcDonalds, "Check your class , it returned NULL");
@@ -27,8 +30,8 @@ class LibraryTest {
                 "Rating :  4 stars\n" +
                 "]", mcDonalds.getReviews().toString());
 
-        assertEquals("Please Choose a rating between 0 and 5 stars", mcDonalds.addReview("blah", "bluh", 7));
-        assertEquals("Please Choose a rating between 0 and 5 stars", mcDonalds.addReview("blah", "bluh", -5));
+        assertEquals("Please Choose a rating between 0 and 5 stars", mcDonalds.addReview(review2));
+        assertEquals("Please Choose a rating between 0 and 5 stars", mcDonalds.addReview(review3));
     }
 
 
