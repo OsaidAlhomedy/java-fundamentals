@@ -2,19 +2,20 @@ package inheritance;
 
 import java.util.ArrayList;
 
-// The restaurant implements the review because each restaurant got its own reviews
-public class Restaurant extends ThingsToReview{
+public class Shop extends ThingsToReview{
 
+    private String description;
 
-    public Restaurant(String name, String price) {
+    public Shop(String name,String description, String price) {
         super(name, price);
+        this.description = description;
     }
 
-    //////////// toString OverRiding
+
     @Override
     public String toString() {
-
-        return "\nRestaurant : " + this.getName() + '\n' +
+        return "\nShop : " + this.getName() +
+                "\nDesciption : " + this.description + '\n' +
                 "Price Category : " + this.getPrice() + '\n' +
                 "Stars : " + this.getTotalStars() + '\n' + "===========" + "\n" +
                 "Reviews : \n" + this.getReviews();

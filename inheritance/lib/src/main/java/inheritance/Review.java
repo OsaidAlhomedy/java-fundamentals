@@ -1,6 +1,6 @@
 package inheritance;
 
-public class Review{
+public abstract class Review{
 
     String body = null;
     String author = null;
