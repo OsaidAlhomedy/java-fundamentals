@@ -3,13 +3,12 @@
  */
 package inheritance;
 
+import java.util.ArrayList;
+
 public class Library {
     public static void main(String[] args) {
 
-        Restaurant mcDonalds = new Restaurant("Mcdonalds","$");
-        Review review1 = new Review("Good fast food","Osaid",3);
-        mcDonalds.addReview(review1);
-        System.out.println(mcDonalds);
+
 
     }
 }

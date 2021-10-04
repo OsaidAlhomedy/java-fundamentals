@@ -3,11 +3,16 @@
  */
 package inheritance;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
     @Test
+    @DisplayName("This tests the restaurant instantiation")
     void restaurantTesting() {
         Restaurant mcDonalds = new Restaurant("McDonald's", "$$");
         assertNotNull(mcDonalds, "Check your class , it returned NULL");
@@ -15,13 +20,13 @@ class LibraryTest {
     }
 
     @Test
+    @DisplayName("This tests the review instantiation")
     void reviewTesting() {
         Restaurant mcDonalds = new Restaurant("McDonald's", "$$");
-        Review review1 = new Review("Food was good","Osaid",4);
-        Review review2 = new Review("Blah","Blah",7);
-        Review review3 = new Review("Blah","Blah",-4);
+        Review review1 = new SingleReview("Food was good","Osaid",4);
+        Review review2 = new SingleReview("Blah","Blah",7);
+        Review review3 = new SingleReview("Blah","Blah",-4);
         mcDonalds.addReview(review1);
-
 
         assertNotNull(mcDonalds, "Check your class , it returned NULL");
 
@@ -29,9 +34,77 @@ class LibraryTest {
                 "Review : Food was good\n" +
                 "Rating :  4 stars\n" +
                 "]", mcDonalds.getReviews().toString());
+    }
 
-        assertEquals("Please Choose a rating between 0 and 5 stars", mcDonalds.addReview(review2));
-        assertEquals("Please Choose a rating between 0 and 5 stars", mcDonalds.addReview(review3));
+    @Test
+    @DisplayName("This tests the Shops instantiations")
+    void shopClass() {
+        Shop test = new Shop("Jarir","this is a test shop","$$");
+
+        assertNotNull(test);
+        assertEquals("Jarir",test.getName());
+
+    }
+
+    @Test
+    @DisplayName("This tests the review adding instantiations")
+    void shopReviewAdding() {
+        Shop test = new Shop("Jarir","this is a test shop","$$");
+        Review review = new SingleReview("Books were good","Ammar",4);
+        test.addReview(review);
+
+        assertNotNull(test);
+        assertEquals("Ammar",review.getAuthor());
+    }
+
+    @Test
+    @DisplayName("This tests the review adding instantiations")
+    void testTheaterClass() {
+
+        ArrayList<String> movieList = new ArrayList<>();
+        movieList.add("Reservoir Dogs");
+        movieList.add("TENET");
+        movieList.add("Fight Club");
+        movieList.add("Django Unchained");
+        movieList.add("Interstellar");
+
+        Theater newTheater = new Theater("the Alpha",movieList);
+        Review review = new MovieReview("Theater was good","Osaid",4);
+        Review review1 = new MovieReview("Theater was good","Osaid",2);
+        newTheater.addReview(review);
+        newTheater.addReview(review1);
+        newTheater.addMovie("Shutter Island");
+        newTheater.removeMovie("TENET");
+
+        assertEquals("the Alpha",newTheater.getName());
+        assertTrue(newTheater.getMovieList().contains("Shutter Island"));
+        assertFalse(newTheater.getMovieList().contains("TENET"));
+    }
+
+    @Test
+    @DisplayName("This tests the review adding for Theater class")
+    void testAddingReviewsTheaterClass() {
+
+        ArrayList<String> movieList = new ArrayList<>();
+        movieList.add("Reservoir Dogs");
+        movieList.add("TENET");
+        movieList.add("Fight Club");
+        movieList.add("Django Unchained");
+        movieList.add("Interstellar");
+
+
+        Theater newTheater = new Theater("the Alpha",movieList);
+        Review review2 = new MovieReview("Good Theater","Ammar",4,"Shutter Island");
+        Review review3 = new MovieReview("Bad experience","Osaid",2);
+        newTheater.addReview(review2);
+        newTheater.addReview(review3);
+        assertTrue(newTheater.getReviews().contains("Reviewer : Osaid\n" +
+                "Review : Bad experience\n" +
+                "Rating :  2 stars\n" +
+                "Movie Watched : Didn't Watch\n"));
+
+
+
     }
 
 
